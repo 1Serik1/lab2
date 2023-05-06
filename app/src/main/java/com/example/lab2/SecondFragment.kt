@@ -1,0 +1,43 @@
+package com.example.lab2
+
+import android.os.Bundle
+import androidx.fragment.app.Fragment
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import com.example.lab2.databinding.FragmentSecondBinding
+
+class SecondFragment : Fragment() {
+
+    private var _binding: FragmentSecondBinding? = null
+    private val binding get() = _binding!!
+
+    companion object{
+        val number = "number"
+        val name = "name"
+        val creator = "creator"
+        val description = "description"
+        val url = "URL"
+    }
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        _binding = FragmentSecondBinding.inflate(inflater,container,false)
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        binding.textView.text = arguments?.getString(name)
+        binding.textView2.text = arguments?.getString(creator)
+        binding.textView3.text = arguments?.getString(description)
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
+    }
+}
